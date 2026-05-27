@@ -3,19 +3,11 @@
 import { motion, AnimatePresence } from 'motion/react'
 import { useState, useEffect, useRef } from 'react'
 import { Card } from '../shared/components/card'
-import { Code, Coffee, Lightbulb, Users, Zap, BookOpen, Target, ChevronLeft, ChevronRight, Shield } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { aboutData } from '../data/AboutData'
 
 export function AboutSection() {
-  const features = [
-    { icon: Code,      title: 'Clean Code',        description: 'Writing maintainable, scalable, and efficient code that stands the test of time.' },
-    { icon: Lightbulb, title: 'Innovation',         description: 'Always exploring new technologies and creative solutions to complex problems.' },
-    { icon: Users,     title: 'Collaboration',      description: 'Working effectively with teams to deliver exceptional user experiences.' },
-    { icon: Coffee,    title: 'Dedication',         description: 'Committed to continuous learning and staying current with industry trends.' },
-    { icon: Zap,       title: 'Performance',        description: 'Obsessed with speed — optimizing every layer from database queries to render cycles.' },
-    { icon: Shield,    title: 'Reliability',        description: 'Building robust, well-tested systems that hold up under real-world conditions.' },
-    { icon: BookOpen,  title: 'Continuous Learning',description: 'Constantly expanding my skill set through courses, books, and hands-on experimentation.' },
-    { icon: Target,    title: 'User Focus',         description: 'Keeping end-users at the center of every design and engineering decision.' },
-  ]
+  const { features, traits, sectionTitle, subheading, bioParagraphs } = aboutData
 
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
@@ -29,9 +21,9 @@ export function AboutSection() {
   const itemsPerPage = isMobile ? 2 : 4
   const [page, setPage] = useState(0)
   const [direction, setDirection] = useState(1)
-  const totalPages = 4 // 8 items, shift by 2
+  const totalPages = Math.ceil(features.length / 2)
 
-  const visibleFeatures = Array.from({ length: itemsPerPage }, (_, i) => features[(page * 2 + i) % 8])
+  const visibleFeatures = Array.from({ length: itemsPerPage }, (_, i) => features[(page * 2 + i) % features.length])
 
   const navigate = (dir: number) => {
     setDirection(dir)
@@ -63,7 +55,7 @@ export function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl text-white mb-6">About Me</h2>
+          <h2 className="text-4xl md:text-5xl text-white mb-6">{sectionTitle}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-blue-400 mx-auto"></div>
         </motion.div>
 
@@ -75,21 +67,10 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h3 className="text-2xl text-white mb-4">
-              Passionate about creating digital experiences that matter
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              With over 5 years of experience in web development, I've had the privilege of working with
-              startups and established companies to bring their digital visions to life. My journey began
-              with a curiosity about how websites work, and it has evolved into a passion for creating
-              seamless, performant applications.
-            </p>
-            <p className="text-gray-300 leading-relaxed">
-              I specialize in React, Node.js, and modern JavaScript frameworks, but I'm always eager to
-              learn new technologies that can help me build better solutions. When I'm not coding, you'll
-              find me contributing to open-source projects, writing technical articles, or exploring the
-              latest in web technologies.
-            </p>
+            <h3 className="text-2xl text-white mb-4">{subheading}</h3>
+            {bioParagraphs.map((paragraph, i) => (
+              <p key={i} className="text-gray-300 leading-relaxed">{paragraph}</p>
+            ))}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -98,7 +79,7 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="flex flex-wrap gap-3 mt-6"
             >
-              {['Problem Solver', 'Team Player', 'Quick Learner', 'Detail Oriented'].map((trait) => (
+              {traits.map((trait) => (
                 <span
                   key={trait}
                   className="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-full text-sm border border-emerald-500/30"

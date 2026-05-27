@@ -2,50 +2,10 @@
 
 import { motion } from 'motion/react'
 import { Card } from '../shared/components/card'
+import { skillsData } from '../data/SkillsData'
 
 export function SkillsSection() {
-  const skillCategories = [
-    {
-      title: 'Frontend',
-      skills: [
-        { name: 'React / Next.js', featured: true },
-        { name: 'TypeScript', featured: true },
-        { name: 'Tailwind CSS', featured: true },
-        { name: 'Vue.js', featured: false },
-        { name: 'HTML / CSS', featured: false },
-        { name: 'Redux', featured: false },
-        { name: 'Vite', featured: false },
-        { name: 'Figma', featured: false },
-        { name: 'Storybook', featured: false },
-      ]
-    },
-    {
-      title: 'Backend',
-      skills: [
-        { name: 'Node.js', featured: true },
-        { name: 'Python', featured: true },
-        { name: 'GraphQL', featured: true },
-        { name: 'PostgreSQL', featured: false },
-        { name: 'MongoDB', featured: false },
-        { name: 'REST APIs', featured: false },
-        { name: 'Express.js', featured: false },
-        { name: 'Redis', featured: false },
-      ]
-    },
-    {
-      title: 'Tools & Others',
-      skills: [
-        { name: 'Git / GitHub', featured: true },
-        { name: 'Docker', featured: true },
-        { name: 'AWS', featured: true },
-        { name: 'CI / CD', featured: false },
-        { name: 'Linux', featured: false },
-        { name: 'Jest', featured: false },
-        { name: 'Vercel', featured: false },
-        { name: 'Webpack', featured: false },
-      ]
-    }
-  ]
+  const { sectionTitle, sectionSubtitle, categories } = skillsData
 
   return (
     <section id="skills" className="py-20 bg-gradient-to-r from-black via-gray-900 to-black">
@@ -57,15 +17,13 @@ export function SkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl text-white mb-6">Skills & Technologies</h2>
+          <h2 className="text-4xl md:text-5xl text-white mb-6">{sectionTitle}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            Here are the technologies and tools I use to bring ideas to life
-          </p>
+          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">{sectionSubtitle}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+          {categories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 50 }}

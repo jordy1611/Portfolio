@@ -5,35 +5,13 @@ import { Card } from '../shared/components/card'
 import { Button } from '../shared/components/button'
 import { Input } from '../shared/components/input'
 import { Textarea } from '../shared/components/textarea'
-import { Mail, MapPin, Linkedin, Send, Copy, ExternalLink, Plane, FileText, Download } from 'lucide-react'
+import { Send } from 'lucide-react'
+import { contactData } from '../data/ContactData'
+import { globalData } from '../data/GlobalData'
 
 export function ContactSection() {
-  const contactInfo = [
-    {
-      icon: FileText,
-      label: 'Resumé',
-      value: 'Download my resumé',
-      href: '#'
-    },
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'jordan.shryock@email.com',
-      href: 'mailto:jordan.shryock@email.com'
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/jordanshryock',
-      href: 'https://linkedin.com/in/jordanshryock'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'San Francisco, CA',
-      href: '#'
-    }
-  ]
+  const { sectionTitle, formHeading, introText, form, contactInfo } = contactData
+  const { footerText } = globalData
 
 return (
     <section id="contact" className="pt-20 bg-gradient-to-b from-black via-gray-900 to-black">
@@ -45,7 +23,7 @@ return (
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl text-white mb-6">Get In Touch</h2>
+          <h2 className="text-4xl md:text-5xl text-white mb-6">{sectionTitle}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto"></div>
         </motion.div>
 
@@ -59,44 +37,44 @@ return (
             className="order-last lg:order-first"
           >
             <Card className="p-8 bg-gray-900/50 border-white/10">
-              <h3 className="text-2xl text-white mb-3">Reach Out!</h3>
+              <h3 className="text-2xl text-white mb-3">{formHeading}</h3>
               <form className="space-y-6">
                 <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Name</label>
+                  <label className="text-gray-300 text-sm mb-2 block">{form.nameLabel}</label>
                   <Input
-                    placeholder="Your name"
+                    placeholder={form.namePlaceholder}
                     className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Email</label>
+                  <label className="text-gray-300 text-sm mb-2 block">{form.emailLabel}</label>
                   <Input
                     type="email"
-                    placeholder="your.email@example.com"
+                    placeholder={form.emailPlaceholder}
                     className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Subject</label>
+                  <label className="text-gray-300 text-sm mb-2 block">{form.subjectLabel}</label>
                   <Input
-                    placeholder="Project discussion"
+                    placeholder={form.subjectPlaceholder}
                     className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Message</label>
+                  <label className="text-gray-300 text-sm mb-2 block">{form.messageLabel}</label>
                   <Textarea
-                    placeholder="Tell me about your project..."
+                    placeholder={form.messagePlaceholder}
                     rows={5}
                     className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500 resize-none"
                   />
                 </div>
-                
+
                 <Button className="w-full bg-emerald-500 hover:bg-emerald-400 text-white py-3 rounded-full cursor-pointer flex items-center justify-center gap-2">
-                  Connect <Send className="w-4 h-4" />
+                  {form.submitLabel} <Send className="w-4 h-4" />
                 </Button>
               </form>
             </Card>
@@ -110,11 +88,7 @@ return (
             viewport={{ once: true }}
             className="flex flex-col justify-between h-full"
           >
-            <p className="text-gray-400 leading-relaxed mb-6">
-              I'm currently available for freelance work and full-time opportunities.
-              Whether you have a project in mind or just want to chat about technology,
-              I'd love to hear from you.
-            </p>
+            <p className="text-gray-400 leading-relaxed mb-6">{introText}</p>
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.a
@@ -133,23 +107,16 @@ return (
                     <p className="text-gray-400 text-sm">{info.label}</p>
                     <p className="text-white">{info.value}</p>
                   </div>
-                  {info.label === 'Resumé' && (
-                    <Download className="w-4 h-4 text-emerald-400" />
-                  )}
-                  {info.label === 'Email' && (
+                  {info.copyable ? (
                     <button
                       type="button"
                       onClick={(e) => { e.preventDefault(); navigator.clipboard.writeText(info.value) }}
                       className="text-emerald-400 hover:text-emerald-300 transition-colors duration-200 cursor-pointer"
                     >
-                      <Copy className="w-4 h-4" />
+                      <info.actionIcon className="w-4 h-4" />
                     </button>
-                  )}
-                  {info.label === 'LinkedIn' && (
-                    <ExternalLink className="w-4 h-4 text-emerald-400" />
-                  )}
-                  {info.label === 'Location' && (
-                    <Plane className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <info.actionIcon className="w-4 h-4 text-emerald-400" />
                   )}
                 </motion.a>
               ))}
@@ -169,7 +136,7 @@ return (
         className="border-t border-white/10 mt-16 overflow-hidden w-full"
       >
         <p className="text-gray-400 leading-relaxed text-center">
-          ©2026. Designed and implemented with love by Jordan Shryock and Claude.
+          {footerText}
         </p>
       </motion.div>
     </section>

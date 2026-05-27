@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import { ArrowDown } from 'lucide-react'
+import { landingData } from '../data/LandingData'
 
 export function HeroSection() {
   return (
@@ -43,7 +44,7 @@ export function HeroSection() {
             transition={{ delay: 0.2 }}
             className="text-emerald-400 text-lg tracking-wider"
           >
-            Hello, I'm
+            {landingData.greeting}
           </motion.p>
           
           <motion.h1
@@ -52,7 +53,7 @@ export function HeroSection() {
             transition={{ delay: 0.4 }}
             className="text-5xl md:text-7xl text-white mb-6"
           >
-            Jordan Shryock
+            {landingData.fullName}
           </motion.h1>
           
           <motion.div
@@ -61,13 +62,13 @@ export function HeroSection() {
             transition={{ delay: 0.6 }}
             className="text-2xl md:text-4xl text-gray-300 mb-8"
           >
-            I'm a{' '}
+            {landingData.roleIntro}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">
-              Full-Stack Developer
+              {landingData.role}
             </span>
-            {' '}specializing in{' '}
+            {' '}{landingData.specialtyIntro}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              Modern Web Applications
+              {landingData.specialty}
             </span>
           </motion.div>
           
@@ -77,8 +78,7 @@ export function HeroSection() {
             transition={{ delay: 0.8 }}
             className="text-gray-400 text-lg max-w-2xl mx-auto mb-8"
           >
-            I craft exceptional digital experiences using cutting-edge technologies like React, Node.js, and TypeScript.
-            Passionate about clean code, user experience, and bringing ideas to life.
+            {landingData.bio}
           </motion.p>
 
           <motion.div
@@ -88,11 +88,11 @@ export function HeroSection() {
             className="md:hidden"
           >
             <a
-              href="#"
+              href={landingData.resumeUrl}
               download
               className="inline-block px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full transition-all duration-300 cursor-pointer"
             >
-              Resumé
+              {landingData.resumeLabel}
             </a>
           </motion.div>
 

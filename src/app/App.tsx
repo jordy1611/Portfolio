@@ -1,6 +1,6 @@
 import { Navigation } from './pages/Navigation'
 import { BottomNav } from './pages/BottomNav'
-import { HeroSection } from './pages/HeroSection'
+import { HeroSection } from './pages/LandingSection'
 import { AboutSection } from './pages/AboutSection'
 import { SkillsSection } from './pages/SkillsSection'
 import { ProjectsSection } from './pages/ProjectsSection'
