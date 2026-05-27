@@ -124,8 +124,8 @@ export function ProjectsSection() {
               <ChevronLeft className="w-8 h-8" />
             </button>
           )}
-          <div className="overflow-hidden flex-1" onTouchStart={handleFeaturedTouchStart} onTouchEnd={handleFeaturedTouchEnd}>
-            <AnimatePresence mode="wait" custom={direction}>
+          <div className="overflow-hidden flex-1 relative min-h-[420px]" onTouchStart={handleFeaturedTouchStart} onTouchEnd={handleFeaturedTouchEnd}>
+            <AnimatePresence custom={direction}>
               <motion.div
                 key={page}
                 custom={direction}
@@ -133,8 +133,8 @@ export function ProjectsSection() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.35, ease: 'easeInOut' }}
-                className="grid lg:grid-cols-2 gap-8"
+                transition={{ duration: 0.85, ease: 'easeInOut' }}
+                className="absolute inset-0 grid lg:grid-cols-2 gap-8"
               >
                 {visibleProjects.map((project) => (
                   <ProjectCard key={project.title} project={project} />
@@ -179,8 +179,8 @@ export function ProjectsSection() {
               <ChevronLeft className="w-8 h-8" />
             </button>
           )}
-          <div className="overflow-hidden flex-1" onTouchStart={handleOtherTouchStart} onTouchEnd={handleOtherTouchEnd}>
-            <AnimatePresence mode="wait" custom={otherDirection}>
+          <div className="overflow-hidden flex-1 relative min-h-[280px]" onTouchStart={handleOtherTouchStart} onTouchEnd={handleOtherTouchEnd}>
+            <AnimatePresence custom={otherDirection}>
               <motion.div
                 key={otherPage}
                 custom={otherDirection}
@@ -188,8 +188,8 @@ export function ProjectsSection() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.35, ease: 'easeInOut' }}
-                className="grid md:grid-cols-3 gap-6"
+                transition={{ duration: 0.85, ease: 'easeInOut' }}
+                className="absolute inset-0 grid md:grid-cols-3 gap-6"
               >
                 {otherProjects.slice(otherPage * otherPerPage, otherPage * otherPerPage + otherPerPage).map((project) => (
                   <Card
