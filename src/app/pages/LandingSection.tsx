@@ -4,7 +4,7 @@ import { motion } from 'motion/react'
 import { ArrowDown } from 'lucide-react'
 import { landingData } from '../data/LandingData'
 
-export function HeroSection() {
+export function LandingSection() {
   return (
     <section id="home" className="h-full w-full bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center relative overflow-hidden">
       {/* Animated background elements */}

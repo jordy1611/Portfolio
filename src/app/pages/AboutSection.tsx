@@ -40,9 +40,9 @@ export function AboutSection() {
   }
 
   const slideVariants = {
-    enter: (d: number) => ({ x: d > 0 ? 100 : -100, opacity: 0 }),
+    enter: (d: number) => ({ x: d > 0 ? '100%' : '-100%', opacity: 0 }),
     center: { x: 0, opacity: 1 },
-    exit:  (d: number) => ({ x: d > 0 ? -100 : 100, opacity: 0 }),
+    exit:  (d: number) => ({ x: d > 0 ? '-100%' : '100%', opacity: 0 }),
   }
 
   return (
@@ -108,11 +108,11 @@ export function AboutSection() {
               )}
 
               <div
-                className="overflow-hidden flex-1"
+                className="overflow-hidden flex-1 relative min-h-[420px]"
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
               >
-                <AnimatePresence mode="wait" custom={direction}>
+                <AnimatePresence custom={direction}>
                   <motion.div
                     key={page}
                     custom={direction}
@@ -120,15 +120,15 @@ export function AboutSection() {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                    transition={{ duration: 0.65, ease: 'easeInOut' }}
+                    className="absolute inset-0 grid grid-cols-1 sm:grid-cols-2 gap-6 content-start"
                   >
                     {visibleFeatures.map((feature) => (
                       <Card key={feature.title} className="p-6 bg-black/50 border-white/10">
-                        <div className="text-emerald-400 mb-4">
-                          <feature.icon className="w-8 h-8" />
+                        <div className="text-emerald-400">
+                          <feature.icon className="w-6 h-6" />
                         </div>
-                        <h4 className="text-white text-lg mb-2">{feature.title}</h4>
+                        <h4 className="text-white text-lg mb-1">{feature.title}</h4>
                         <p className="text-gray-400 text-sm">{feature.description}</p>
                       </Card>
                     ))}
