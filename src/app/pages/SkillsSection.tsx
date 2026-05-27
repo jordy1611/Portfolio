@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Card } from './ui/card'
+import { Card } from '../shared/components/card'
 
 export function SkillsSection() {
   const skillCategories = [

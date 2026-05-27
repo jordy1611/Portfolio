@@ -1,10 +1,10 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Card } from './ui/card'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
+import { Card } from '../shared/components/card'
+import { Button } from '../shared/components/button'
+import { Input } from '../shared/components/input'
+import { Textarea } from '../shared/components/textarea'
 import { Mail, MapPin, Linkedin, Send, Copy, ExternalLink, Plane, FileText, Download } from 'lucide-react'
 
 export function ContactSection() {

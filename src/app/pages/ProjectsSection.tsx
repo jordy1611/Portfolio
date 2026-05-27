@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react'
 import { useState, useEffect, useRef } from 'react'
-import { Card } from './ui/card'
+import { Card } from '../shared/components/card'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 
 type FeaturedProject = {

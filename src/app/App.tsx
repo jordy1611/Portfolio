@@ -1,10 +1,10 @@
-import { Navigation } from './components/Navigation'
-import { BottomNav } from './components/BottomNav'
-import { HeroSection } from './components/HeroSection'
-import { AboutSection } from './components/AboutSection'
-import { SkillsSection } from './components/SkillsSection'
-import { ProjectsSection } from './components/ProjectsSection'
-import { ContactSection } from './components/ContactSection'
+import { Navigation } from './pages/Navigation'
+import { BottomNav } from './pages/BottomNav'
+import { HeroSection } from './pages/HeroSection'
+import { AboutSection } from './pages/AboutSection'
+import { SkillsSection } from './pages/SkillsSection'
+import { ProjectsSection } from './pages/ProjectsSection'
+import { ContactSection } from './pages/ContactSection'
 
 export default function App() {
   return (
